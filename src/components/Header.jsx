@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import Container from "./Container";
+import Button from "./Button";
 
 const navLinks = [
   { label: "HOME", target: null },
@@ -66,42 +67,56 @@ export default function Header() {
         className="fixed top-0 left-0 w-full z-50 flex justify-center"
       >
         <Container as={motion.nav} style={{ borderRadius }} className="flex items-center justify-between h-[70px]">
+          {/* Burger — left */}
+          <div className="flex-1 flex items-center">
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="relative z-50 flex flex-col justify-center items-start gap-[8px] w-7 h-7 p-0.5 cursor-pointer transition-opacity hover:opacity-70"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              <AnimatePresence mode="wait">
+                {isMenuOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={24} className="text-white" strokeWidth={2} />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="menu"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col justify-center items-start gap-[6px] w-6 h-6"
+                  >
+                    <span className="block w-full h-[2px] bg-white rounded-[10px]" />
+                    <span className="block w-3/4 h-[2px] bg-white rounded-[10px]" />
+                    <span className="block w-full h-[2px] bg-white rounded-[10px]" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+
+          {/* Logo — center */}
           <span className="text-2xl font-bold tracking-tight text-[#DFFF00] select-none">
             .Fixwad
           </span>
 
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="relative z-50 flex flex-col justify-center items-end gap-[8px] w-7 h-7 p-0.5 cursor-pointer transition-opacity hover:opacity-70"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <AnimatePresence mode="wait">
-              {isMenuOpen ? (
-                <motion.span
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} className="text-white" strokeWidth={2} />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex flex-col justify-center items-end gap-[6px] w-6 h-6"
-                >
-                  <span className="block w-full h-[2px] bg-white rounded-[10px]" />
-                  <span className="block w-3/4 h-[2px] bg-white rounded-[10px]" />
-                  <span className="block w-full h-[2px] bg-white rounded-[10px]" />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
+          {/* Contact — right */}
+          <div className="flex-1 flex items-center justify-end">
+            <Button
+              variant="secondary"
+              onClick={(e) => handleNavClick(e, "contact")}
+            >
+              Contact
+            </Button>
+          </div>
         </Container>
       </motion.header>
 
