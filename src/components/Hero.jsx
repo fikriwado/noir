@@ -114,7 +114,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
         style={{ y: globeParallaxY }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1350px] pointer-events-none z-0 select-none hidden min-[810px]:block"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90vw] max-w-[1350px] pointer-events-none z-0 select-none hidden min-[810px]:block"
       >
         <motion.img
           src="/images/globe.png"
