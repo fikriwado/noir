@@ -64,7 +64,7 @@ export default function Header() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{ paddingTop }}
-        className="fixed top-0 left-0 w-full z-50 flex justify-center"
+        className="fixed top-0 left-0 w-full z-50 flex justify-center bg-background"
       >
         <Container as={motion.nav} style={{ borderRadius }} className="flex items-center justify-between h-[70px]">
           {/* Burger — left */}

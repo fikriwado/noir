@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
+import LifeAt from "@/components/LifeAt";
 import FixedUI from "@/components/FixedUI";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     <div className="min-h-screen overflow-hidden">
       <Header />
       <Hero />
+      <LifeAt />
       <Section id="about" title="About Me" className="pt-40 sm:pt-52">
         <p>
           I&apos;m a developer and designer with a passion for building clean, functional digital experiences. I enjoy working across the full stack — from crafting pixel-perfect interfaces to architecting robust backend systems.
