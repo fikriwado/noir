@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Works from "@/components/Works";
 import Experience from "@/components/Experience";
 import LifeAt from "@/components/LifeAt";
+import Contact from "@/components/Contact";
 import FixedUI from "@/components/FixedUI";
 
 export default function Home() {
@@ -16,11 +17,7 @@ export default function Home() {
       <About />
       <Works />
       <Experience />
-      <Section id="contact" title="Get In Touch">
-        <p>
-          Have a project in mind, a collaboration idea, or just want to say hello? I&apos;m always open to new conversations and opportunities.
-        </p>
-      </Section>
+      <Contact />
       <FixedUI />
     </div>
   );
