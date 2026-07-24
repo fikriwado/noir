@@ -1,4 +1,5 @@
 import Section from "./Section";
+import Reveal from "./Reveal";
 
 const experienceData = [
   {
@@ -31,26 +32,27 @@ export default function Experience() {
   return (
     <Section id="experience" title="Experience">
       <div className="flex flex-col">
-        {experienceData.map((item) => (
-          <div
-            key={item.id}
-            className="group relative w-full flex flex-col md:flex-row md:items-start border-b border-zinc-800 py-8 px-4 md:px-8 hover:bg-zinc-900/50 transition-colors duration-300 border-l-4 border-transparent hover:border-[#DFFF00]"
-          >
-            <div className="w-full md:w-1/5 mb-2 md:mb-0">
-              <span className="text-zinc-500 text-sm font-mono tracking-widest">
-                {item.year}
-              </span>
+        {experienceData.map((item, i) => (
+          <Reveal key={item.id} delay={i * 0.12}>
+            <div
+              className="group relative w-full flex flex-col md:flex-row md:items-start border-b border-zinc-800 py-8 px-4 md:px-8 hover:bg-zinc-900/50 transition-colors duration-300 border-l-4 border-transparent hover:border-[#DFFF00]"
+            >
+              <div className="w-full md:w-1/5 mb-2 md:mb-0">
+                <span className="text-zinc-500 text-sm font-mono tracking-widest">
+                  {item.year}
+                </span>
+              </div>
+              <div className="w-full md:w-2/5 mb-4 md:mb-0 pr-4">
+                <h3 className="text-xl font-bold text-white">{item.role}</h3>
+                <p className="text-[#DFFF00] mt-1 font-medium">{item.company}</p>
+              </div>
+              <div className="w-full md:w-2/5">
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
             </div>
-            <div className="w-full md:w-2/5 mb-4 md:mb-0 pr-4">
-              <h3 className="text-xl font-bold text-white">{item.role}</h3>
-              <p className="text-[#DFFF00] mt-1 font-medium">{item.company}</p>
-            </div>
-            <div className="w-full md:w-2/5">
-              <p className="text-zinc-400 text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Section>

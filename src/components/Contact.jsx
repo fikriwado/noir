@@ -2,23 +2,32 @@
 
 import { useState } from "react";
 import Section from "./Section";
+import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
     <Section id="contact" title="Get In Touch">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 flex flex-col gap-6">
-          <p className="text-lg sm:text-xl text-zinc-400 font-light leading-relaxed">
-            Have a project in mind, a collaboration idea, or just want to say
-            hello? I&apos;m always open to new conversations and opportunities.
-          </p>
-          <p className="text-zinc-500 text-sm leading-relaxed">
-            Available for freelance projects &amp; collaborations.
-          </p>
+          <Reveal>
+            <p className="text-lg sm:text-xl text-zinc-400 font-light leading-relaxed">
+              Have a project in mind, a collaboration idea, or just want to say
+              hello? I&apos;m always open to new conversations and opportunities.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-zinc-500 text-sm leading-relaxed">
+              Available for freelance projects &amp; collaborations.
+            </p>
+          </Reveal>
         </div>
         <div className="lg:col-span-5 flex flex-col gap-6">
-          <CopyEmail email="mfikri.khoirurrizal@gmail.com" />
-          <CopyEmail email="fixwad@soara.id" />
+          <Reveal delay={0.15}>
+            <CopyEmail email="mfikri.khoirurrizal@gmail.com" />
+          </Reveal>
+          <Reveal delay={0.2}>
+            <CopyEmail email="fixwad@soara.id" />
+          </Reveal>
         </div>
       </div>
     </Section>
