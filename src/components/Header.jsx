@@ -104,7 +104,7 @@ export default function Header() {
           </div>
 
           {/* Logo — center */}
-          <span className="text-2xl font-bold tracking-tight text-[#DFFF00] select-none">
+          <span className="text-2xl font-bold tracking-widest text-[#DFFF00] uppercase select-none">
             .Fixwad
           </span>
 
@@ -142,7 +142,7 @@ export default function Header() {
                   variants={linkVariants}
                   href={link.target ? `#${link.target}` : "#"}
                   onClick={(e) => handleNavClick(e, link.target)}
-                  className="font-[family-name:var(--font-heading)] text-5xl sm:text-7xl font-black text-white hover:text-neon transition-colors duration-300 select-none cursor-pointer"
+                   className="font-[family-name:var(--font-body)] text-5xl sm:text-7xl font-bold text-white hover:text-neon uppercase tracking-widest transition-colors duration-300 select-none cursor-pointer"
                 >
                   {link.label}
                 </motion.a>

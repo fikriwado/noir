@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Section from "./Section";
 import Reveal from "./Reveal";
 
@@ -8,7 +12,7 @@ const experienceData = [
     role: "Lead Web Developer",
     company: "Soara Dev",
     description:
-      "Leading a specialized team in delivering high-performance web applications and POS systems utilizing Laravel, React, and modern deployment pipelines.",
+      "Lead a team building high-performance web applications and POS systems. Architect scalable solutions with Laravel, React, and modern DevOps pipelines. Manage client relationships from discovery through deployment.",
   },
   {
     id: 2,
@@ -16,7 +20,7 @@ const experienceData = [
     role: "Full-Stack Developer",
     company: "Soara Dev",
     description:
-      "Built custom web applications and digital tools for local businesses, handling everything from frontend interfaces to server-side logic and deployment.",
+      "Built custom web applications end-to-end — database design, API development, and responsive frontends. Worked directly with clients to translate business requirements into technical solutions delivered on time.",
   },
   {
     id: 3,
@@ -24,36 +28,60 @@ const experienceData = [
     role: "Freelance Developer",
     company: "Independent",
     description:
-      "Collaborated with small businesses and agencies to build responsive websites, e-commerce platforms, and internal management dashboards.",
+      "Partnered with small businesses, agencies, and startups on websites, e-commerce platforms, and internal dashboards. Managed full project lifecycle independently — scoping, design, development, and deployment.",
   },
 ];
 
 export default function Experience() {
+  const [openId, setOpenId] = useState(null);
+
   return (
     <Section id="experience" title="Experience">
-      <div className="flex flex-col">
-        {experienceData.map((item, i) => (
-          <Reveal key={item.id} delay={i * 0.12}>
-            <div
-              className="group relative w-full flex flex-col md:flex-row md:items-start border-b border-zinc-800 py-8 px-4 md:px-8 hover:bg-zinc-900/50 transition-colors duration-300 border-l-4 border-transparent hover:border-[#DFFF00]"
-            >
-              <div className="w-full md:w-1/5 mb-2 md:mb-0">
-                <span className="text-zinc-500 text-sm font-mono tracking-widest">
-                  {item.year}
-                </span>
-              </div>
-              <div className="w-full md:w-2/5 mb-4 md:mb-0 pr-4">
-                <h3 className="text-xl font-bold text-white">{item.role}</h3>
-                <p className="text-[#DFFF00] mt-1 font-medium">{item.company}</p>
-              </div>
-              <div className="w-full md:w-2/5">
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+      <div>
+        {experienceData.map((item, i) => {
+          const isOpen = openId === item.id;
+          return (
+            <Reveal key={item.id} delay={i * 0.12}>
+              <div className="border-b border-zinc-800/50">
+                <button
+                  onClick={() => setOpenId(isOpen ? null : item.id)}
+                  className="group flex w-full items-center justify-between py-6 md:py-8 text-left cursor-pointer"
+                >
+                  <div className="relative flex items-center min-w-0 flex-1">
+                    <span className={`absolute left-0 top-1/2 -translate-y-1/2 size-2 bg-[#DFFF00] transition-all duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                    <h3 className={`text-[20px] font-medium transition-all duration-300 font-[family-name:var(--font-body)] ${isOpen ? 'text-[#DFFF00] translate-x-5' : 'text-white group-hover:text-[#DFFF00] group-hover:translate-x-5'}`}>
+                      {item.role}
+                    </h3>
+                  </div>
+                <div className="flex items-center justify-between w-56 md:w-64 shrink-0">
+                  <span className="text-zinc-500 tabular-nums text-sm font-[family-name:var(--font-body)]">
+                    {item.year}
+                  </span>
+                  <span className="text-[#DFFF00] text-xs font-bold tracking-widest uppercase font-[family-name:var(--font-body)]">
+                    {item.company}
+                  </span>
+                </div>
+              </button>
+              <AnimatePresence initial={false}>
+                {openId === item.id && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-8 text-[#f0f0f0] leading-relaxed text-sm md:text-base font-[family-name:var(--font-body)]">
+                      {item.description}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </Reveal>
-        ))}
+          );
+        })}
       </div>
     </Section>
   );

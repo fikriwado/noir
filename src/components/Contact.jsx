@@ -10,7 +10,7 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 flex flex-col gap-6">
           <Reveal>
-            <p className="text-lg sm:text-xl text-zinc-400 font-light leading-relaxed">
+            <p className="text-lg sm:text-xl text-[#f0f0f0] font-light leading-relaxed">
               Have a project in mind, a collaboration idea, or just want to say
               hello? I&apos;m always open to new conversations and opportunities.
             </p>
@@ -47,12 +47,12 @@ function CopyEmail({ email }) {
 
   return (
     <div className="flex items-center justify-between gap-4 border-b border-zinc-800/60 py-3">
-      <span className="text-zinc-300 font-mono text-sm tracking-wide truncate">
+      <span className="text-zinc-400 font-[family-name:var(--font-body)] text-sm tabular-nums tracking-wide truncate">
         {email}
       </span>
       <button
         onClick={handleCopy}
-        className="shrink-0 font-mono text-xs uppercase tracking-widest text-zinc-500 hover:text-[#DFFF00] transition-colors duration-200 cursor-pointer"
+        className="shrink-0 font-[family-name:var(--font-body)] text-xs tabular-nums uppercase tracking-widest text-zinc-500 hover:text-[#DFFF00] transition-colors duration-200 cursor-pointer"
       >
         {copied ? "Copied!" : "Copy"}
       </button>

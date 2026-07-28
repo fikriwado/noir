@@ -19,7 +19,7 @@ export default function LifeAt() {
     <section id="lifeat" className="relative w-full py-14 sm:pt-20">
       <Container>
         <Reveal>
-          <p className="font-[family-name:var(--font-body)] text-[18px] text-gray-400 text-center mb-8">
+          <p className="font-[family-name:var(--font-body)] text-[18px] text-[#f0f0f0] text-center mb-8">
             Teams, Orgs, &amp; Companies I&apos;ve Grown With
           </p>
         </Reveal>
