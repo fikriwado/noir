@@ -6,6 +6,7 @@ import Works from "@/components/Works";
 import Experience from "@/components/Experience";
 import LifeAt from "@/components/LifeAt";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import FixedUI from "@/components/FixedUI";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <Works />
       <Experience />
       <Contact />
+      <Footer />
       <FixedUI />
     </div>
   );

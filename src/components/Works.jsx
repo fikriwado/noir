@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Section from "./Section";
 import Reveal from "./Reveal";
 
@@ -45,15 +49,24 @@ const projects = [
 ];
 
 export default function Works() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+
   return (
     <Section id="works" title="Selected Works">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+      <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         {projects.map((p, i) => (
           <Reveal key={i} delay={i * 0.12}>
             <div className="group relative w-full h-[250px] md:h-[320px] overflow-hidden bg-zinc-900 cursor-pointer">
-              <img
+              <motion.img
                 src={p.img}
                 alt={p.alt}
+                style={{ y: imageY }}
                 className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 contrast-75 brightness-90 group-hover:scale-105 group-hover:opacity-10 transition-all duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-black mix-blend-multiply pointer-events-none transition-opacity duration-500 opacity-30 group-hover:opacity-90" />

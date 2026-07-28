@@ -6,35 +6,29 @@ import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
-    <Section id="contact" title="Get In Touch">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-        <div className="lg:col-span-7 flex flex-col gap-6">
-          <Reveal>
-            <p className="text-lg sm:text-xl text-[#f0f0f0] font-light leading-relaxed">
+    <Section id="contact">
+      <Reveal>
+        <div className="bg-neon text-black rounded-none p-8 md:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center [&_*::selection]:!bg-black [&_*::selection]:!text-neon">
+          <h2 className="font-[family-name:var(--font-heading)] uppercase text-black text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter">
+            LET&apos;S BUILD SOMETHING.
+          </h2>
+          <div className="flex flex-col gap-6">
+            <p className="font-[family-name:var(--font-body)] text-black/80 font-medium leading-relaxed">
               Have a project in mind, a collaboration idea, or just want to say
               hello? I&apos;m always open to new conversations and opportunities.
             </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-zinc-500 text-sm leading-relaxed">
-              Available for freelance projects &amp; collaborations.
-            </p>
-          </Reveal>
+            <div className="flex flex-col">
+              <CopyRow email="mfikri.khoirurrizal@gmail.com" />
+              <CopyRow email="fixwad@soara.id" />
+            </div>
+          </div>
         </div>
-        <div className="lg:col-span-5 flex flex-col gap-6">
-          <Reveal delay={0.15}>
-            <CopyEmail email="mfikri.khoirurrizal@gmail.com" />
-          </Reveal>
-          <Reveal delay={0.2}>
-            <CopyEmail email="fixwad@soara.id" />
-          </Reveal>
-        </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }
 
-function CopyEmail({ email }) {
+function CopyRow({ email }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -46,16 +40,16 @@ function CopyEmail({ email }) {
   };
 
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-zinc-800/60 py-3">
-      <span className="text-zinc-400 font-[family-name:var(--font-body)] text-sm tabular-nums tracking-wide truncate">
+    <button
+      onClick={handleCopy}
+      className="flex justify-between items-center py-4 border-b-2 border-black w-full cursor-pointer group hover:bg-black/5 transition-colors text-left"
+    >
+      <span className="font-[family-name:var(--font-body)] text-black text-lg font-medium truncate">
         {email}
       </span>
-      <button
-        onClick={handleCopy}
-        className="shrink-0 font-[family-name:var(--font-body)] text-xs tabular-nums uppercase tracking-widest text-zinc-500 hover:text-[#DFFF00] transition-colors duration-200 cursor-pointer"
-      >
-        {copied ? "Copied!" : "Copy"}
-      </button>
-    </div>
+      <span className="font-[family-name:var(--font-body)] text-xs text-black uppercase tracking-widest font-black shrink-0 ml-4">
+        {copied ? "Copied!" : "COPY"}
+      </span>
+    </button>
   );
 }
