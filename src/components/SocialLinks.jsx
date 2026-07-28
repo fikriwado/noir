@@ -66,7 +66,7 @@ export default function SocialLinks({ showBackToTop = false }) {
     <motion.div
       animate={{ y: showBackToTop ? -58 : 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-      className="fixed bottom-0 right-8 z-40 flex flex-col items-center gap-5"
+      className="hidden md:flex fixed bottom-0 right-8 z-40 flex-col items-center gap-5"
     >
       {links.map((link) => {
         const Icon = link.icon;

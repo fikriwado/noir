@@ -2,7 +2,7 @@ import Container from "./Container";
 
 export default function Section({ id, title, children, className = "" }) {
   return (
-    <section id={id} className={`relative w-full py-24 sm:py-32 ${className}`}>
+    <section id={id} className={`relative w-full py-24 md:py-32 lg:py-40 ${className}`}>
       <Container>
         {title && (
           <a href={`#${id}`} className="group flex items-center gap-6 mb-10">

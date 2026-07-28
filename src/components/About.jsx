@@ -20,12 +20,12 @@ export default function About() {
       <div ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 flex flex-col gap-6">
           <Reveal>
-            <motion.p style={{ y: p1Y }} className="text-lg sm:text-xl text-[#f0f0f0] font-light leading-relaxed">
+            <motion.p style={{ y: p1Y }} className="text-base md:text-lg text-[#f0f0f0] leading-relaxed">
               I am an independent web developer dedicated to helping business owners thrive in the digital space. You know how to run your business. I know how to translate that into a seamless online experience. I build systems that simply work, from engaging websites to custom web applications that streamline your operations.
             </motion.p>
           </Reveal>
           <Reveal delay={0.1}>
-            <motion.p style={{ y: p2Y }} className="text-lg sm:text-xl text-[#f0f0f0] font-light leading-relaxed">
+            <motion.p style={{ y: p2Y }} className="text-base md:text-lg text-[#f0f0f0] leading-relaxed">
               My goal is to take away the technical headaches. You won&apos;t need to worry about code, servers, or design jargon. I handle the entire technical process from start to finish, allowing you to focus entirely on growing your business and serving your customers.
             </motion.p>
           </Reveal>

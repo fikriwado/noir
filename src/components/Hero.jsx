@@ -60,7 +60,7 @@ export default function Hero() {
           <motion.div style={{ y: eyebrowY }} className="relative z-20">
             <motion.p
               variants={itemVariants}
-              className="text-[14px] uppercase tracking-widest font-bold text-gray-400 mb-12 sm:mb-10"
+              className="text-[14px] uppercase tracking-widest font-bold text-gray-400 mb-8 md:mb-10"
             >
               HELLO THERE <motion.span animate={{ rotate: [0, 14, -8, 14, -8, 0] }} transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 1.5 }} className="inline-block">👋</motion.span>
             </motion.p>
@@ -70,14 +70,14 @@ export default function Hero() {
           <div className="relative flex flex-col items-center gap-0 z-10">
             {/* FIKRI */}
             <motion.div style={{ y: fikriY }} variants={itemVariants} className="relative z-10">
-              <h1 className="font-[family-name:var(--font-heading)] text-[25vw] sm:text-[15vw] leading-[0.8] sm:leading-[0.85] tracking-tighter font-black text-neon uppercase">
+              <h1 className="font-[family-name:var(--font-heading)] text-[25vw] leading-[0.85] tracking-tighter sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black text-neon uppercase">
                 FIKRI
               </h1>
             </motion.div>
 
             {/* WADO */}
             <motion.div style={{ y: wadoY }} variants={itemVariants} className="relative z-10">
-              <h1 className="font-[family-name:var(--font-heading)] text-[25vw] sm:text-[15vw] leading-[0.8] sm:leading-[0.85] tracking-tighter font-black text-neon uppercase">
+              <h1 className="font-[family-name:var(--font-heading)] text-[25vw] leading-[0.85] tracking-tighter sm:text-[7rem] md:text-[9rem] lg:text-[11rem] font-black text-neon uppercase">
                 WADO
               </h1>
             </motion.div>
@@ -87,7 +87,7 @@ export default function Hero() {
           <motion.div style={{ y: subY }} className="relative z-20">
             <motion.p
               variants={itemVariants}
-               className="mt-6 max-w-xl text-center text-[22px] leading-relaxed font-[family-name:var(--font-body)] text-zinc-300 px-6 sm:px-0"
+               className="mt-6 max-w-xl text-center text-base md:text-lg leading-relaxed font-[family-name:var(--font-body)] text-zinc-300 px-6 sm:px-0"
             >
               I&apos;m a Web Developer &amp; Designer. I enjoy writing clean code, building practical apps, and constantly learning.
             </motion.p>
@@ -103,7 +103,7 @@ export default function Hero() {
         style={{ y: exploreY }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center pointer-events-none select-none z-0"
       >
-        <span className="font-[family-name:var(--font-heading)] text-[35vw] sm:text-[25vw] font-black uppercase tracking-tighter whitespace-nowrap leading-none text-white/[0.02]">
+        <span className="font-[family-name:var(--font-heading)] text-[15vw] md:text-[20vw] lg:text-[25rem] font-black uppercase tracking-tighter whitespace-nowrap leading-none opacity-5 md:opacity-10 select-none">
           EXPLORE
         </span>
       </motion.div>
