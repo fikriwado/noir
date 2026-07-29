@@ -47,7 +47,7 @@ export default function Experience() {
       <div ref={sectionRef} className="relative">
         <motion.div
           style={{ y: bgY }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex justify-center items-center pointer-events-none select-none z-0"
+          className="hidden sm:flex absolute top-0 left-1/2 -translate-x-1/2 w-full flex justify-center items-center pointer-events-none select-none z-0"
         >
           <span className="font-[family-name:var(--font-heading)] text-[25vw] sm:text-[18vw] font-black uppercase tracking-tighter whitespace-nowrap leading-none text-white/[0.008]"
   style={{

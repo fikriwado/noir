@@ -62,7 +62,7 @@ export default function Works() {
       <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         {projects.map((p, i) => (
           <Reveal key={i} delay={i * 0.12}>
-            <div className="group relative w-full aspect-video overflow-hidden bg-zinc-900 cursor-pointer">
+            <div className="group relative w-full aspect-video lg:aspect-auto lg:h-[320px] overflow-hidden bg-zinc-900 cursor-pointer">
               <motion.img
                 src={p.img}
                 alt={p.alt}

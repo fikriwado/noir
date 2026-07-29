@@ -16,7 +16,7 @@ const logos = [
 
 export default function LifeAt() {
   return (
-    <section id="lifeat" className="relative w-full py-16 md:py-24">
+    <section id="lifeat" className="relative w-full py-16 md:py-24 lg:py-14 lg:pt-20">
       <Container>
         <Reveal>
           <p className="font-[family-name:var(--font-body)] text-[18px] text-[#f0f0f0] text-center mb-8">

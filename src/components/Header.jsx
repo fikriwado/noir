@@ -10,6 +10,7 @@ const navLinks = [
   { label: "HOME", target: null },
   { label: "ABOUT", target: "about" },
   { label: "WORKS", target: "works" },
+  { label: "EXPERIENCE", target: "experience" },
   { label: "CONTACT", target: "contact" },
 ];
 
@@ -41,7 +42,13 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (window.__lenis) {
+      isMenuOpen ? window.__lenis.stop() : window.__lenis.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      if (window.__lenis) window.__lenis.start();
+    };
   }, [isMenuOpen]);
 
   const paddingTop = useTransform(scrollY, [0, 60], [30, 0]);
@@ -50,11 +57,14 @@ export default function Header() {
   const handleNavClick = (e, target) => {
     e.preventDefault();
     setIsMenuOpen(false);
-    if (target && window.__lenis) {
-      window.__lenis.scrollTo(`#${target}`, { offset: 0 });
-    } else if (window.__lenis) {
-      window.__lenis.scrollTo(0);
-    }
+    if (window.__lenis) window.__lenis.start();
+    requestAnimationFrame(() => {
+      if (target && window.__lenis) {
+        window.__lenis.scrollTo(`#${target}`, { offset: 0 });
+      } else if (window.__lenis) {
+        window.__lenis.scrollTo(0);
+      }
+    });
   };
 
   return (
@@ -104,7 +114,7 @@ export default function Header() {
           </div>
 
           {/* Logo — center */}
-          <span className="text-2xl font-bold tracking-widest text-[#DFFF00] uppercase select-none">
+          <span className="text-2xl font-bold tracking-widest text-[#DFFF00] select-none">
             .Fixwad
           </span>
 
@@ -127,8 +137,15 @@ export default function Header() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex items-center justify-center"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex items-center justify-center"
           >
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-6 right-6 z-[70] text-white hover:text-neon transition-colors cursor-pointer"
+              aria-label="Close menu"
+            >
+              <X size={28} strokeWidth={2} />
+            </button>
             <motion.nav
               variants={linkContainerVariants}
               initial="hidden"
@@ -142,7 +159,7 @@ export default function Header() {
                   variants={linkVariants}
                   href={link.target ? `#${link.target}` : "#"}
                   onClick={(e) => handleNavClick(e, link.target)}
-                   className="font-[family-name:var(--font-body)] text-5xl sm:text-7xl font-bold text-white hover:text-neon uppercase tracking-widest transition-colors duration-300 select-none cursor-pointer"
+                   className="font-[family-name:var(--font-body)] text-4xl sm:text-6xl font-bold text-white hover:text-neon uppercase tracking-wide transition-colors duration-300 select-none cursor-pointer"
                 >
                   {link.label}
                 </motion.a>

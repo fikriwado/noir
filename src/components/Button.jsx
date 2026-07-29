@@ -13,7 +13,7 @@ export default function Button({
   ...props
 }) {
   const base =
-    "inline-flex items-center justify-center px-6 h-[43px] rounded-full text-base font-bold tracking-widest uppercase transition-colors duration-300 select-none cursor-pointer font-[family-name:var(--font-body)]";
+    "inline-flex items-center justify-center px-6 h-[43px] rounded-full text-base font-bold tracking-widest transition-colors duration-300 select-none cursor-pointer font-[family-name:var(--font-body)]";
 
   const classes = `${base} ${variants[variant]} ${className}`;
 

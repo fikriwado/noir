@@ -44,15 +44,15 @@ function InstagramIcon({ size = 20 }) {
 }
 
 const links = [
-  { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+  { icon: Mail, href: "mailto:mfikri.khoirurrizal@gmail.com", label: "Email" },
 ];
 
 const otherLinks = [
-  { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: GithubIcon, href: "https://github.com", label: "GitHub" },
-  { icon: ThreadsIcon, href: "https://threads.net", label: "Threads" },
-  { icon: UpworkIcon, href: "https://upwork.com", label: "Upwork" },
-  { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
+  { icon: LinkedinIcon, href: "https://linkedin.com/in/fikriwado", label: "LinkedIn" },
+  { icon: GithubIcon, href: "https://github.com/fikriwado/", label: "GitHub" },
+  { icon: ThreadsIcon, href: "https://www.threads.com/@fikriwado_", label: "Threads" },
+  { icon: UpworkIcon, href: "https://www.upwork.com/freelancers/~014690c0d41c03eb90?mp_source=share", label: "Upwork" },
+  { icon: InstagramIcon, href: "https://www.instagram.com/fikriwado_/", label: "Instagram" },
 ];
 
 export default function SocialLinks({ showBackToTop = false }) {

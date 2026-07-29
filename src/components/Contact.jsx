@@ -6,9 +6,9 @@ import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
-    <Section id="contact">
+    <Section id="contact" className="!py-16 md:!py-20 lg:!py-24">
       <Reveal>
-        <div className="bg-neon text-black rounded-none p-8 md:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center [&_*::selection]:!bg-black [&_*::selection]:!text-neon">
+        <div className="bg-neon text-black rounded-none p-6 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center [&_*::selection]:!bg-black [&_*::selection]:!text-neon">
           <h2 className="font-[family-name:var(--font-heading)] uppercase text-black text-5xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter">
             LET&apos;S BUILD SOMETHING.
           </h2>
