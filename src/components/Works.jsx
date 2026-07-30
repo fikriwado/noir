@@ -1,13 +1,21 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useSyncExternalStore } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import Section from "./Section";
 import Reveal from "./Reveal";
+import FloatingGallery from "./FloatingGallery";
 
 const projects = [
   {
+    slug: "budiman",
     img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1618172193763-c511deb635ca?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=400&auto=format&fit=crop",
+    ],
     alt: "Project 1",
     label: "Logo Design",
     icon: (
@@ -19,19 +27,40 @@ const projects = [
     ),
   },
   {
+    slug: "budiman",
     img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=400&auto=format&fit=crop",
+    ],
     alt: "Project 2",
     label: "Web Application",
     icon: <polygon points="12 2 2 22 22 22" />,
   },
   {
+    slug: "budiman",
     img: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=1000&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=400&auto=format&fit=crop",
+    ],
     alt: "Project 3",
     label: "UI/UX Design",
     icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
   },
   {
+    slug: "budiman",
     img: "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=1000&auto=format&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1604871000636-074fa5117945?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=400&auto=format&fit=crop",
+    ],
     alt: "Project 4",
     label: "Open Source",
     icon: (
@@ -49,25 +78,45 @@ const projects = [
 ];
 
 export default function Works() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+  const [activeProject, setActiveProject] = useState(null);
+  const isTouchDevice = useSyncExternalStore(
+    (onStoreChange) => {
+      const mq = window.matchMedia("(pointer: coarse)");
+      mq.addEventListener("change", onStoreChange);
+      return () => mq.removeEventListener("change", onStoreChange);
+    },
+    () => window.matchMedia("(pointer: coarse)").matches,
+    () => false,
+  );
 
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 15 });
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 15 });
+
+  const handleMouseMove = (e) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
 
   return (
     <Section id="works" title="Selected Works">
-      <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+      <div
+        onMouseMove={!isTouchDevice ? handleMouseMove : undefined}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12"
+      >
         {projects.map((p, i) => (
           <Reveal key={i} delay={i * 0.12}>
-            <div className="group relative w-full aspect-video lg:aspect-auto lg:h-[320px] overflow-hidden bg-zinc-900 cursor-pointer">
-              <motion.img
+            <div
+              onMouseEnter={() => !isTouchDevice && setActiveProject(p)}
+              onMouseLeave={() => !isTouchDevice && setActiveProject(null)}
+              className="group relative w-full aspect-video lg:aspect-auto lg:h-[320px] overflow-hidden bg-zinc-900 cursor-pointer"
+            >
+              <img
                 src={p.img}
                 alt={p.alt}
-                style={{ y: imageY }}
-                className="absolute inset-0 w-full h-full object-cover grayscale opacity-50 contrast-75 brightness-90 group-hover:scale-105 group-hover:opacity-10 transition-all duration-500 ease-out"
+                className="absolute inset-0 w-full h-full object-cover object-top grayscale contrast-125 opacity-10 mix-blend-luminosity group-hover:scale-105 transition-all duration-500 ease-out"
               />
               <div className="absolute inset-0 bg-black mix-blend-multiply pointer-events-none transition-opacity duration-500 opacity-30 group-hover:opacity-90" />
               <div className="absolute inset-0 flex items-center justify-center">
@@ -93,6 +142,13 @@ export default function Works() {
           </Reveal>
         ))}
       </div>
+      {!isTouchDevice && (
+        <FloatingGallery
+          active={activeProject}
+          springX={springX}
+          springY={springY}
+        />
+      )}
     </Section>
   );
 }
