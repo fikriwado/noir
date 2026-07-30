@@ -32,7 +32,7 @@ const experienceData = [
   },
 ];
 
-export default function Experience() {
+export default function Experience({ isInnerPage = false }) {
   const [openId, setOpenId] = useState(null);
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -43,7 +43,7 @@ export default function Experience() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <Section id="experience" title="Experience">
+    <Section id="experience" title="Experience" hideViewMore={isInnerPage} viewMoreHref={isInnerPage ? undefined : "/experience"}>
       <div ref={sectionRef} className="relative">
         <motion.div
           style={{ y: bgY }}

@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Section from "./Section";
 import Reveal from "./Reveal";
 
-export default function About() {
+export default function About({ isInnerPage = false }) {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -16,7 +16,7 @@ export default function About() {
   const p2Y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   return (
-    <Section id="about" title="About Me" className="pt-40 sm:pt-52">
+    <Section id="about" title="About Me" hideViewMore={isInnerPage} viewMoreHref={isInnerPage ? undefined : "/about"} className="pt-40 sm:pt-52">
       <div ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         <div className="lg:col-span-7 flex flex-col gap-6">
           <Reveal>

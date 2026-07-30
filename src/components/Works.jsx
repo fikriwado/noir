@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Section from "./Section";
 import Reveal from "./Reveal";
@@ -77,7 +78,7 @@ const projects = [
   },
 ];
 
-export default function Works() {
+export default function Works({ isInnerPage = false }) {
   const [activeProject, setActiveProject] = useState(null);
   const isTouchDevice = useSyncExternalStore(
     (onStoreChange) => {
@@ -101,13 +102,17 @@ export default function Works() {
   };
 
   return (
-    <Section id="works" title="Selected Works">
+    <Section id="works" title="Selected Works" hideViewMore={isInnerPage} viewMoreHref={isInnerPage ? undefined : "/works"}>
       <div
         onMouseMove={!isTouchDevice ? handleMouseMove : undefined}
         className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12"
       >
         {projects.map((p, i) => (
           <Reveal key={i} delay={i * 0.12}>
+            <Link
+              href={`/works/${p.slug}`}
+              className="block w-full h-full"
+            >
             <div
               onMouseEnter={() => !isTouchDevice && setActiveProject(p)}
               onMouseLeave={() => !isTouchDevice && setActiveProject(null)}
@@ -139,6 +144,7 @@ export default function Works() {
                 {p.label}
               </div>
             </div>
+            </Link>
           </Reveal>
         ))}
       </div>

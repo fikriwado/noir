@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import About from "@/components/About";
@@ -11,8 +10,7 @@ import FixedUI from "@/components/FixedUI";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-hidden">
-      <Header />
+    <main className="flex-1 overflow-hidden">
       <Hero />
       <LifeAt />
       <About />
@@ -21,6 +19,6 @@ export default function Home() {
       <Contact />
       <Footer />
       <FixedUI />
-    </div>
+    </main>
   );
 }

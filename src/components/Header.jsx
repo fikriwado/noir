@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
@@ -114,9 +115,9 @@ export default function Header() {
           </div>
 
           {/* Logo — center */}
-          <span className="text-2xl font-bold tracking-widest text-[#DFFF00] select-none">
+          <Link href="/" className="text-2xl font-bold tracking-widest text-[#DFFF00] select-none">
             .Fixwad
-          </span>
+          </Link>
 
           {/* Contact — right */}
           <div className="flex-1 flex items-center justify-end">

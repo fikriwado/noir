@@ -1,4 +1,5 @@
 import { Big_Shoulders, DM_Sans } from "next/font/google";
+import Header from "@/components/Header";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -23,8 +24,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${bigShoulders.variable} ${dmSans.variable}`}>
-      <body className="antialiased">
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="min-h-screen bg-zinc-950 text-zinc-100 antialiased flex flex-col">
+        <SmoothScroll>
+          <Header />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
